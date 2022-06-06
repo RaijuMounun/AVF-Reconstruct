@@ -62,6 +62,11 @@ public class Production : MonoBehaviour
         {
             _axeAnimator.enabled = false;
         }
+
+        UIM._woodFiller.fillAmount = _woodTimer / _woodTime;
+
+        //Menu.menu.woodFillbar.fillAmount = Menu.menu.woodtimer / Menu.menu.woodTime;
+        //woodFillbarPercentText.text = string.Format("{0:#} %", ((Menu.menu.woodtimer / Menu.menu.woodTime) * 100));
         #endregion
     }
 

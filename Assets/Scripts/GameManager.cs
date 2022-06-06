@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public UIManager UIM;
 
     [SerializeField, FoldoutGroup("Bools")]
-    bool _CameraInWood = true;
+    public bool _CameraInWood = true;
 
     [SerializeField, FoldoutGroup("Gameobjects")]
     GameObject _Camera;

@@ -1,27 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Sirenix.OdinInspector;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour //I thought I needed this more but...
 {
     #region Variables
-    [SerializeField, FoldoutGroup("Scripts")]
-    public GameManager gm;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public Data data;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public Production prd;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public UIManager UIM;
 
-    [SerializeField, FoldoutGroup("Bools")]
-    public bool _CameraInWood = true;
+    #region Scripts
+    [FoldoutGroup("Scripts")] public GameManager gm;
+    [FoldoutGroup("Scripts")] public Production prd;
+    [FoldoutGroup("Scripts")] public UIManager UIM;
+    [FoldoutGroup("Scripts")] public SO_Manager SOM;
+    #endregion
 
-    [SerializeField, FoldoutGroup("Gameobjects")]
-    GameObject _Camera;
 
+    public float money;
     #endregion
 
 
@@ -30,22 +26,6 @@ public class GameManager : MonoBehaviour
         gm = this;
     }
 
-    private void Update()
-    {
-        #region Camera Position
-        if (_CameraInWood)
-        {
-            _Camera.transform.position = new Vector3(-25,20,-25);
-        }
-        else
-        {
-            _Camera.transform.position = new Vector3(75,20,75);
-        }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            _CameraInWood = !_CameraInWood;
-        }
-        #endregion
-    }
+    
 }

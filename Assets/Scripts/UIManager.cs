@@ -1,72 +1,214 @@
+#region Namespaces
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using TMPro;
+#endregion
+
 
 public class UIManager : MonoBehaviour
 {
     #region Scripts
-    [SerializeField, FoldoutGroup("Scripts")]
-    public GameManager gm;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public Data data;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public Production prd;
-    [SerializeField, FoldoutGroup("Scripts")]
-    public UIManager UIM;
+    [FoldoutGroup("Scripts")] public GameManager gm;
+    [FoldoutGroup("Scripts")] public Production prd;
+    [FoldoutGroup("Scripts")] public UIManager UIM;
+    [FoldoutGroup("Scripts")] public SO_Manager SOM;
     #endregion
 
-    #region Stocks
-    [SerializeField, FoldoutGroup("Stocks")]
-    Text _woodStockText, _timberStockText, _tableStockText, _paintedStockText, _ironOreStockText, _ironIngotStockText, _nailStockText, _gearStockText;
+    public TMP_Text moneyText;
 
-    public List<Text> stockTextsList = new List<Text>();
+    #region Fillers, for showing production visual
+    [FoldoutGroup("Fillbars")] public Image _woodFiller, _timberFiller, _tableFiller, _paintedFiller, _ironOreFiller, _ironIngotFiller, _nailFiller, _gearFiller; //I guess I don't need this, I'll look.
+
+    [FoldoutGroup("Fillbars")] public Image[] fillersArray;
     #endregion
 
-    #region Fillbars
-    [SerializeField, FoldoutGroup("Fillbars")]
-    public Image _woodFiller, _timberFiller, _tableFiller, _paintedFiller;//, _ironOreFiller, _ironIngotFiller, _nailFiller, _gearFiller;
+    #region Camera Pos
+    [SerializeField, FoldoutGroup("Camera Pos")] public bool CameraInWood = true;
+    [SerializeField, FoldoutGroup("Camera Pos")] public GameObject Camera;
+    [SerializeField, FoldoutGroup("Camera Pos")] public Vector3 CameraWoodPivot, CameraIronPivot;
     #endregion
 
     #region UI Switch Wood - Iron
-    [FoldoutGroup("SWITCH")]
-    [SerializeField, FoldoutGroup("SWITCH/Prod Buttons & Fillbars")]
-    GameObject _woodsButtonFillbarParent, _ironsButtonFillbarParent;
+    [FoldoutGroup("Prod Buttons & Fillbars")]
+    public GameObject woodsButtonFillbarParent, ironsButtonFillbarParent;
     #endregion
 
+    #region Menu Elements
+    [SerializeField, FoldoutGroup("Menu Elements")] public bool isMenuOpen = false;
+    [SerializeField, FoldoutGroup("Menu Elements")] public GameObject menu;
+
+    [SerializeField, FoldoutGroup("Menu Elements/Menus")] GameObject SellMenu, SpdUpgMenu, IncUpgMenu, ManagersMenu, BuildingsMenu, PrestigeMenu;
+    [SerializeField, FoldoutGroup("Menu Elements/Menus")] GameObject[] MenusArray;
+
+    [SerializeField, FoldoutGroup("Menu Elements/Sell Menu Incomes")] TMP_Text WoodSellIncomeText, TimberSellIncomeText, TableSellIncomeText, PaintedSellIncomeText, IronOreSellIncomeText, IronIngotSellIncomeText, NailSellIncomeText, GearSellIncomeText;
+    [SerializeField, FoldoutGroup("Menu Elements/Sell Menu Incomes")] TMP_Text[] SellIncomeTextsArray;
+
+    [SerializeField, FoldoutGroup("Menu Elements/Speed&Income Upgrades Cost")] TMP_Text[] SpdUpgCostTextsArray;
+    [SerializeField, FoldoutGroup("Menu Elements/Speed&Income Upgrades Cost")] TMP_Text[] IncUpgCostTextsArray;
+    #endregion
+
+    #region Buildings, fillbars and button; to unlock when purchased
+    [SerializeField] GameObject[] _ProdButtonsAndFillbarsArray;
+    [SerializeField] GameObject[] _BuildingsArray;
+    [SerializeField] GameObject[] _BuildingsSubMenusArray; //For closing setactive when bought
+    [SerializeField] GameObject[] _ManagerSubMenusArray; //For closing again
+    #endregion
 
     private void Awake()
     {
         UIM = this;
+        isMenuOpen = false;
     }
 
     private void Start()
     {
-        stockTextsList.Add(_woodStockText);
-        stockTextsList.Add(_timberStockText);
-        stockTextsList.Add(_tableStockText);
-        stockTextsList.Add(_paintedStockText);
-        stockTextsList.Add(_ironOreStockText);
-        stockTextsList.Add(_ironIngotStockText);
-        stockTextsList.Add(_nailStockText);
-        stockTextsList.Add(_gearStockText);
+        SOM.objectsList[0].isBuildingBought = SOM.objectsList[4].isBuildingBought = true; //Wood and Iron Ore is always open, no need to purchase them
     }
-
-
 
     private void Update()
     {
-        //Text Displays but The array is not updated even though the value has changed, so this is not working.
-        for (int i = 0; i < stockTextsList.Count; i++)
+        #region Stocks text display
+        for (int i = 0; i < 8; i++)
         {
-            stockTextsList[i].text = data.stocksArray[i] + "";
+            SOM.StockTextsArray[i].text = SOM.objectsList[i].stock.ToString();
+        }
+        #endregion
+
+        #region UI Display Switch        
+        woodsButtonFillbarParent.SetActive(CameraInWood);
+        ironsButtonFillbarParent.SetActive(!CameraInWood);
+        #endregion
+
+        #region Camera Position
+        if (CameraInWood)
+        {
+            Camera.transform.position = CameraWoodPivot;
+        }
+        else
+        {
+            Camera.transform.position = CameraIronPivot;
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            CameraSwitch();
+        }
+        #endregion
 
-        //UI Display Switch        
-        _woodsButtonFillbarParent.SetActive(gm._CameraInWood);
-        _ironsButtonFillbarParent.SetActive(!gm._CameraInWood);
-        
+        #region Menu Button Texts
+        for (int i = 0; i < SellIncomeTextsArray.Length; i++) //Sell button income texts
+            SellIncomeTextsArray[i].text = "Sell For $" + SOM.objectsList[i].stock * SOM.objectsList[i].MaterialCost;
+
+        for (int i = 0; i < 8; i++) //Speed upgrade button cost text
+            SpdUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].SpdUpgCost;
+
+        for (int i = 0; i < 8; i++) //Income upgrade button cost text
+            IncUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].IncUpgCost;
+        #endregion
+
+        #region Buildings and fillbars & Produce buttons. When building bought, these are turning on
+        for (int i = 0; i < _BuildingsArray.Length; i++)
+        {
+            _ProdButtonsAndFillbarsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
+            _BuildingsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
+        }
+        #endregion
+
+        #region Manager Menu Materials, when bought these are turning off
+        for (int i = 0; i < 8; i++)
+        {
+            _ManagerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought);
+        }
+        #endregion
+
+        #region Buildings Menu Materials, when bought, set setactive false
+        for (int i = 0; i < 8; i++)
+        {
+            if ((i==0) && (i==4))
+            {
+                continue;
+            }
+            _BuildingsSubMenusArray[i].SetActive(!SOM.objectsList[i].isBuildingBought);
+        }
+        #endregion
+
+        #region If building not bought, then you can't hire the building's manager.
+        for (int i = 0; i < 8; i++)
+        {
+            if (SOM.objectsList[i].isBuildingBought == false)
+            {
+                _ManagerSubMenusArray[i].SetActive(false);
+            }
+        }
+        #endregion
+
+        moneyText.text = "$" + gm.money.ToString();
+
+        menu.SetActive(isMenuOpen);
     }
+
+    public void MenuOnOffButton() { isMenuOpen = !isMenuOpen; }
+
+    public void CameraSwitch() { CameraInWood = !CameraInWood; }
+
+
+    #region Menu Sidebar Buttons
+    public void SellMenuButton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[0].SetActive(true); //Sell Menu
+    }
+
+    public void SpeedUpgMenuButton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[1].SetActive(true); //Speed Upgrade Menu
+    }
+
+    public void IncomeUpgMenuButton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[2].SetActive(true); //Income Upgrade Menu
+    }
+
+    public void ManagersMenuBUtton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[3].SetActive(true); //Managers Menu
+    }
+
+    public void BuildingsMenuButton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[4].SetActive(true); //Buildings Menu
+    }
+
+    public void PrestigeMenuButton()
+    {
+        for (int i = 0; i < MenusArray.Length; i++)
+        {
+            MenusArray[i].SetActive(false);
+        }
+        MenusArray[5].SetActive(true); //Prestige Menu
+    }
+    #endregion
+
 }

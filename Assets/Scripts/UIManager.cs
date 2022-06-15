@@ -19,11 +19,7 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text moneyText;
 
-    #region Fillers, for showing production visual
-    [FoldoutGroup("Fillbars")] public Image _woodFiller, _timberFiller, _tableFiller, _paintedFiller, _ironOreFiller, _ironIngotFiller, _nailFiller, _gearFiller; //I guess I don't need this, I'll look.
-
     [FoldoutGroup("Fillbars")] public Image[] fillersArray;
-    #endregion
 
     #region Camera Pos
     [SerializeField, FoldoutGroup("Camera Pos")] public bool CameraInWood = true;
@@ -102,11 +98,11 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < SellIncomeTextsArray.Length; i++) //Sell button income texts
             SellIncomeTextsArray[i].text = "Sell For $" + SOM.objectsList[i].stock * SOM.objectsList[i].MaterialCost;
 
-        for (int i = 0; i < 8; i++) //Speed upgrade button cost text
+        for (int i = 0; i < 8; i++) //Speed & income upgrade button cost text
+        {
             SpdUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].SpdUpgCost;
-
-        for (int i = 0; i < 8; i++) //Income upgrade button cost text
             IncUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].IncUpgCost;
+        }
         #endregion
 
         #region Buildings and fillbars & Produce buttons. When building bought, these are turning on
@@ -155,60 +151,13 @@ public class UIManager : MonoBehaviour
     public void CameraSwitch() { CameraInWood = !CameraInWood; }
 
 
-    #region Menu Sidebar Buttons
-    public void SellMenuButton()
+
+    public void MenusNav(int index) //Sub menu buttons
     {
         for (int i = 0; i < MenusArray.Length; i++)
         {
             MenusArray[i].SetActive(false);
         }
-        MenusArray[0].SetActive(true); //Sell Menu
+        MenusArray[index].SetActive(true);
     }
-
-    public void SpeedUpgMenuButton()
-    {
-        for (int i = 0; i < MenusArray.Length; i++)
-        {
-            MenusArray[i].SetActive(false);
-        }
-        MenusArray[1].SetActive(true); //Speed Upgrade Menu
-    }
-
-    public void IncomeUpgMenuButton()
-    {
-        for (int i = 0; i < MenusArray.Length; i++)
-        {
-            MenusArray[i].SetActive(false);
-        }
-        MenusArray[2].SetActive(true); //Income Upgrade Menu
-    }
-
-    public void ManagersMenuBUtton()
-    {
-        for (int i = 0; i < MenusArray.Length; i++)
-        {
-            MenusArray[i].SetActive(false);
-        }
-        MenusArray[3].SetActive(true); //Managers Menu
-    }
-
-    public void BuildingsMenuButton()
-    {
-        for (int i = 0; i < MenusArray.Length; i++)
-        {
-            MenusArray[i].SetActive(false);
-        }
-        MenusArray[4].SetActive(true); //Buildings Menu
-    }
-
-    public void PrestigeMenuButton()
-    {
-        for (int i = 0; i < MenusArray.Length; i++)
-        {
-            MenusArray[i].SetActive(false);
-        }
-        MenusArray[5].SetActive(true); //Prestige Menu
-    }
-    #endregion
-
 }

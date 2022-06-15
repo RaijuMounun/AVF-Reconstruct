@@ -930,8 +930,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: SellMenuButton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1064,12 +1064,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: PrestigeMenuButton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1198,12 +1198,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ManagersMenuBUtton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5768,14 +5768,6 @@ MonoBehaviour:
   UIM: {fileID: 344618344}
   SOM: {fileID: 767807832}
   moneyText: {fileID: 346422176}
-  _woodFiller: {fileID: 81552664}
-  _timberFiller: {fileID: 1891450542}
-  _tableFiller: {fileID: 44468309}
-  _paintedFiller: {fileID: 391950929}
-  _ironOreFiller: {fileID: 891350818}
-  _ironIngotFiller: {fileID: 1889516038}
-  _nailFiller: {fileID: 1688966985}
-  _gearFiller: {fileID: 595005370}
   fillersArray:
   - {fileID: 81552664}
   - {fileID: 1891450542}
@@ -18736,12 +18728,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: SpeedUpgMenuButton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -19461,12 +19453,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: BuildingsMenuButton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -25408,12 +25400,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 344618344}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: IncomeUpgMenuButton
-        m_Mode: 1
+        m_MethodName: MenusNav
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

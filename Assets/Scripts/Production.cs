@@ -7,7 +7,6 @@ using Sirenix.OdinInspector;
 public class Production : MonoBehaviour
 {
     #region Scripts
-    [FoldoutGroup("Scripts")] public GameManager gm;
     [FoldoutGroup("Scripts")] public Production prd;
     [FoldoutGroup("Scripts")] public UIManager UIM;
     [FoldoutGroup("Scripts")] public SO_Manager SOM;

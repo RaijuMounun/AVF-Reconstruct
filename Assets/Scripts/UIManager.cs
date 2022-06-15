@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour
 {
     #region Scripts
     [FoldoutGroup("Scripts")] public GameManager gm;
-    [FoldoutGroup("Scripts")] public Production prd;
     [FoldoutGroup("Scripts")] public UIManager UIM;
     [FoldoutGroup("Scripts")] public SO_Manager SOM;
     #endregion
@@ -21,11 +20,7 @@ public class UIManager : MonoBehaviour
 
     [FoldoutGroup("Fillbars")] public Image[] fillersArray;
 
-    #region Camera Pos
-    [SerializeField, FoldoutGroup("Camera Pos")] public bool CameraInWood = true;
-    [SerializeField, FoldoutGroup("Camera Pos")] public GameObject Camera;
-    [SerializeField, FoldoutGroup("Camera Pos")] public Vector3 CameraWoodPivot, CameraIronPivot;
-    #endregion
+    
 
     #region UI Switch Wood - Iron
     [FoldoutGroup("Prod Buttons & Fillbars")]
@@ -47,10 +42,10 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Buildings, fillbars and button; to unlock when purchased
-    [SerializeField] GameObject[] _ProdButtonsAndFillbarsArray;
-    [SerializeField] GameObject[] _BuildingsArray;
-    [SerializeField] GameObject[] _BuildingsSubMenusArray; //For closing setactive when bought
-    [SerializeField] GameObject[] _ManagerSubMenusArray; //For closing again
+    [SerializeField] GameObject[] prodButtonsAndFillbarsArray;
+    [SerializeField] GameObject[] buildingsArray;
+    [SerializeField] GameObject[] buildingsSubMenusArray; //For closing setactive when bought
+    [SerializeField] GameObject[] managerSubMenusArray; //For closing again
     #endregion
 
     private void Awake()
@@ -71,28 +66,7 @@ public class UIManager : MonoBehaviour
         {
             SOM.StockTextsArray[i].text = SOM.objectsList[i].stock.ToString();
         }
-        #endregion
-
-        #region UI Display Switch        
-        woodsButtonFillbarParent.SetActive(CameraInWood);
-        ironsButtonFillbarParent.SetActive(!CameraInWood);
-        #endregion
-
-        #region Camera Position
-        if (CameraInWood)
-        {
-            Camera.transform.position = CameraWoodPivot;
-        }
-        else
-        {
-            Camera.transform.position = CameraIronPivot;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            CameraSwitch();
-        }
-        #endregion
+        #endregion        
 
         #region Menu Button Texts
         for (int i = 0; i < SellIncomeTextsArray.Length; i++) //Sell button income texts
@@ -106,28 +80,28 @@ public class UIManager : MonoBehaviour
         #endregion
 
         #region Buildings and fillbars & Produce buttons. When building bought, these are turning on
-        for (int i = 0; i < _BuildingsArray.Length; i++)
+        for (int i = 0; i < buildingsArray.Length; i++)
         {
-            _ProdButtonsAndFillbarsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
-            _BuildingsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
+            buildingsSubMenusArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
+            buildingsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
         }
         #endregion
 
         #region Manager Menu Materials, when bought these are turning off
         for (int i = 0; i < 8; i++)
         {
-            _ManagerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought);
+            managerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought);
         }
         #endregion
 
         #region Buildings Menu Materials, when bought, set setactive false
         for (int i = 0; i < 8; i++)
         {
-            if ((i==0) && (i==4))
+            if ((i==0) && (i==4))  //0 and 4 is wood and iron ore
             {
                 continue;
             }
-            _BuildingsSubMenusArray[i].SetActive(!SOM.objectsList[i].isBuildingBought);
+            buildingsSubMenusArray[i].SetActive(!SOM.objectsList[i].isBuildingBought);
         }
         #endregion
 
@@ -136,7 +110,7 @@ public class UIManager : MonoBehaviour
         {
             if (SOM.objectsList[i].isBuildingBought == false)
             {
-                _ManagerSubMenusArray[i].SetActive(false);
+                buildingsSubMenusArray[i].SetActive(false);
             }
         }
         #endregion
@@ -148,7 +122,7 @@ public class UIManager : MonoBehaviour
 
     public void MenuOnOffButton() { isMenuOpen = !isMenuOpen; }
 
-    public void CameraSwitch() { CameraInWood = !CameraInWood; }
+    
 
 
 

@@ -5764,7 +5764,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1175021731}
-  prd: {fileID: 375716910}
   UIM: {fileID: 344618344}
   SOM: {fileID: 767807832}
   moneyText: {fileID: 346422176}
@@ -5777,10 +5776,6 @@ MonoBehaviour:
   - {fileID: 1889516038}
   - {fileID: 1688966985}
   - {fileID: 595005370}
-  CameraInWood: 1
-  Camera: {fileID: 406213925}
-  CameraWoodPivot: {x: -25, y: 20, z: -25}
-  CameraIronPivot: {x: 75, y: 20, z: 75}
   woodsButtonFillbarParent: {fileID: 1586028197}
   ironsButtonFillbarParent: {fileID: 2091106339}
   isMenuOpen: 0
@@ -5833,7 +5828,7 @@ MonoBehaviour:
   - {fileID: 1490873768}
   - {fileID: 630813831}
   - {fileID: 1486787820}
-  _ProdButtonsAndFillbarsArray:
+  prodButtonsAndFillbarsArray:
   - {fileID: 19820044}
   - {fileID: 1618473429}
   - {fileID: 917090730}
@@ -5842,7 +5837,7 @@ MonoBehaviour:
   - {fileID: 1166952968}
   - {fileID: 203223297}
   - {fileID: 2087592753}
-  _BuildingsArray:
+  buildingsArray:
   - {fileID: 1467954624}
   - {fileID: 1480912791}
   - {fileID: 906901231}
@@ -5851,7 +5846,7 @@ MonoBehaviour:
   - {fileID: 1490121782}
   - {fileID: 1705384643}
   - {fileID: 2107825533}
-  _BuildingsSubMenusArray:
+  buildingsSubMenusArray:
   - {fileID: 1456443584}
   - {fileID: 60511598}
   - {fileID: 1058363197}
@@ -5860,7 +5855,7 @@ MonoBehaviour:
   - {fileID: 1314923603}
   - {fileID: 1420488909}
   - {fileID: 1937499459}
-  _ManagerSubMenusArray:
+  managerSubMenusArray:
   - {fileID: 548785955}
   - {fileID: 624463859}
   - {fileID: 562014999}
@@ -6096,7 +6091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &354018194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6648,7 +6643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580dad8637b319146bb780fec1ca05d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 1175021731}
   prd: {fileID: 375716910}
   UIM: {fileID: 344618344}
   SOM: {fileID: 767807832}
@@ -8915,6 +8909,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459079478}
   m_CullTransparentMesh: 1
+--- !u!1 &466191711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 466191713}
+  - component: {fileID: 466191712}
+  m_Layer: 0
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &466191712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466191711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dac8d3a671467914caf5ca371b83f114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIM: {fileID: 344618344}
+  CameraInWood: 1
+  Camera: {fileID: 406213925}
+  CameraWoodPivot: {x: -25, y: 20, z: -25}
+  CameraIronPivot: {x: 75, y: 20, z: 75}
+--- !u!4 &466191713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466191711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 852.9366, y: 556.09656, z: -765.5237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &478464711
 GameObject:
   m_ObjectHideFlags: 0
@@ -17058,9 +17101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gm: {fileID: 1175021731}
-  prd: {fileID: 375716910}
-  UIM: {fileID: 344618344}
-  SOM: {fileID: 767807832}
   money: 0
 --- !u!1 &1185503685
 GameObject:
@@ -21605,7 +21645,7 @@ RectTransform:
   - {fileID: 354018194}
   - {fileID: 1456443585}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

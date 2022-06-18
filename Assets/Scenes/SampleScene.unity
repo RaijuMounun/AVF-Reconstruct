@@ -613,12 +613,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: TableMakeButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2557,12 +2557,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: IronOreDigButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5780,12 +5780,6 @@ MonoBehaviour:
   ironsButtonFillbarParent: {fileID: 2091106339}
   isMenuOpen: 0
   menu: {fileID: 354018193}
-  SellMenu: {fileID: 922937227}
-  SpdUpgMenu: {fileID: 833999192}
-  IncUpgMenu: {fileID: 1514472741}
-  ManagersMenu: {fileID: 683846993}
-  BuildingsMenu: {fileID: 1941877236}
-  PrestigeMenu: {fileID: 159141105}
   MenusArray:
   - {fileID: 922937227}
   - {fileID: 833999192}
@@ -5793,14 +5787,6 @@ MonoBehaviour:
   - {fileID: 683846993}
   - {fileID: 1941877236}
   - {fileID: 159141105}
-  WoodSellIncomeText: {fileID: 1100262293}
-  TimberSellIncomeText: {fileID: 1706366370}
-  TableSellIncomeText: {fileID: 125294113}
-  PaintedSellIncomeText: {fileID: 961557518}
-  IronOreSellIncomeText: {fileID: 1527672068}
-  IronIngotSellIncomeText: {fileID: 1472536119}
-  NailSellIncomeText: {fileID: 1154199640}
-  GearSellIncomeText: {fileID: 1624706072}
   SellIncomeTextsArray:
   - {fileID: 1100262293}
   - {fileID: 1706366370}
@@ -8939,10 +8925,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIM: {fileID: 344618344}
-  CameraInWood: 1
-  Camera: {fileID: 406213925}
-  CameraWoodPivot: {x: -25, y: 20, z: -25}
-  CameraIronPivot: {x: 75, y: 20, z: 75}
+  cameraInWood: 1
+  camera_: {fileID: 0}
+  cameraWoodPivot: {x: 0, y: 0, z: 0}
+  cameraIronPivot: {x: 0, y: 0, z: 0}
 --- !u!4 &466191713
 Transform:
   m_ObjectHideFlags: 0
@@ -14531,12 +14517,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: IronIngotMeltButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -17753,12 +17739,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: NailPressButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -29834,12 +29820,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: TimberSawButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -30490,12 +30476,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: PaintedPaintButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -30824,8 +30810,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: WoodCutButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -31301,12 +31287,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 375716910}
         m_TargetAssemblyTypeName: Production, Assembly-CSharp
-        m_MethodName: GearCastButton
-        m_Mode: 1
+        m_MethodName: ProductionButtons
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

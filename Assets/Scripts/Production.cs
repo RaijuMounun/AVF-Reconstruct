@@ -49,38 +49,8 @@ public class Production : MonoBehaviour
         #endregion
     }
 
-    #region Button Functions
-    public void WoodCutButton()
+    public void ProductionButtons(int index)
     {
-        SOM.objectsList[0].isProduction = true;
+        SOM.objectsList[index].isProduction = true;
     }
-    public void TimberSawButton()
-    {
-        SOM.objectsList[1].isProduction = true;
-    }
-    public void TableMakeButton()
-    {
-        SOM.objectsList[2].isProduction = true;
-    }
-    public void PaintedPaintButton()
-    {
-        SOM.objectsList[3].isProduction = true;
-    }
-    public void IronOreDigButton()
-    {
-        SOM.objectsList[4].isProduction = true;
-    }
-    public void IronIngotMeltButton()
-    {
-        SOM.objectsList[5].isProduction = true;
-    }
-    public void NailPressButton()
-    {
-        SOM.objectsList[6].isProduction = true;
-    }
-    public void GearCastButton()
-    {
-        SOM.objectsList[7].isProduction = true;
-    }
-    #endregion
 }

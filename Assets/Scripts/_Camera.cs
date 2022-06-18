@@ -5,28 +5,32 @@ public class _Camera : MonoBehaviour
 {
     public UIManager UIM;
 
-    [SerializeField, FoldoutGroup("Camera Pos")] public bool CameraInWood = true;
-    [SerializeField, FoldoutGroup("Camera Pos")] public GameObject Camera;
-    [SerializeField, FoldoutGroup("Camera Pos")] public Vector3 CameraWoodPivot, CameraIronPivot;
+    [FoldoutGroup("Camera Pos")] public bool cameraInWood = true;
+    [FoldoutGroup("Camera Pos")] public Transform camera_;
+    [FoldoutGroup("Camera Pos")] public Vector3 cameraWoodPivot, cameraIronPivot;
 
 
     private void Update()
     {
         #region UI Display Switch        
-        UIM.woodsButtonFillbarParent.SetActive(CameraInWood);
-        UIM.ironsButtonFillbarParent.SetActive(!CameraInWood);
+        UIM.woodsButtonFillbarParent.SetActive(cameraInWood);
+        UIM.ironsButtonFillbarParent.SetActive(!cameraInWood);
         #endregion
 
 
         #region Camera Position
-        if (CameraInWood)
+
+        switch (cameraInWood)
         {
-            Camera.transform.position = CameraWoodPivot;
+            case false:
+                camera_.position = cameraIronPivot;
+                break;
+
+            default:
+                camera_.position = cameraWoodPivot;
+                break;
         }
-        else
-        {
-            Camera.transform.position = CameraIronPivot;
-        }
+
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -36,5 +40,5 @@ public class _Camera : MonoBehaviour
     }
 
 
-    public void CameraSwitch() { CameraInWood = !CameraInWood; }
+    public void CameraSwitch() { cameraInWood = !cameraInWood; }
 }

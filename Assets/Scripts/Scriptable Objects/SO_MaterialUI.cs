@@ -38,7 +38,6 @@ public class SO_MaterialUI : ScriptableObject
                 time /= SpdUpgMultiplier;
         }
     }
-    //Speed and income upgrades are doing the same job but IDK how to call a function with parameters in button, so I did it this way.
     public void IncomeUpgrade()
     {
         if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().money >= IncUpgCost)
@@ -58,7 +57,6 @@ public class SO_MaterialUI : ScriptableObject
             isManagerBought = true;
         }
     }
-    //These two are doing the same job as well, but like I said, IDK. I think I can do this by events but IDK about events.
     public void BuyBuilding()
     {
         if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().money >= BuildingCost)

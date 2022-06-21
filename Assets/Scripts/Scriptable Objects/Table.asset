@@ -12,20 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c44bb66b2850984b9f8d15f6b7e93c0, type: 3}
   m_Name: Table
   m_EditorClassIdentifier: 
-  stock: 298
-  isProduction: 1
-  isManagerBought: 1
-  isBuildingBought: 1
+  stock: 0
+  order: 3
+  isProduction: 0
+  isManagerBought: 0
+  isBuildingBought: 0
   timer: 0.0756391
   time: 0.18076389
   MaterialCost: 15
-  SpdUpgCost: 7945.407
+  SpdUpgCost: 120
   IncUpgCost: 160
   BuildingCost: 1500
   ManagerCost: 2200
-  SpdUpgLvl: 30
+  SpdUpgLvl: 0
   IncUpgLvl: 0
   SpdUpgMultiplier: 1.05
   IncUpgMultiplier: 1.2
   SpdUpgCostMultiplier: 1.15
   IncUpgCostMultiplier: 1.3
+  defaultTime: 6.25
+  defaultStock: 0
+  defaultMaterialCost: 0
+  defaultSpdUpgCost: 120
+  defaultIncUpgCost: 240
+  defaultIncUpgLvl: 0
+  defaultSpdUpgLvl: 0

@@ -8,6 +8,7 @@ using TMPro;
 #endregion
 
 
+
 public class UIManager : MonoBehaviour
 {
     #region Scripts
@@ -28,107 +29,72 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Menu Elements
-    [SerializeField, FoldoutGroup("Menu Elements")] public bool isMenuOpen = false;
     [SerializeField, FoldoutGroup("Menu Elements")] public GameObject menu;
 
     [SerializeField, FoldoutGroup("Menu Elements/Menus")] GameObject[] MenusArray;
 
     [SerializeField, FoldoutGroup("Menu Elements/Sell Menu Incomes")] TMP_Text[] SellIncomeTextsArray;
 
-    [SerializeField, FoldoutGroup("Menu Elements/Speed&Income Upgrades Cost")] TMP_Text[] SpdUpgCostTextsArray, IncUpgCostTextsArray;
+    [FoldoutGroup("Menu Elements/Speed&Income Upgrades Cost")] public TMP_Text[] SpdUpgCostTextsArray, IncUpgCostTextsArray;
     #endregion
 
     #region Buildings, fillbars and button; to unlock when purchased
-    [SerializeField] GameObject[] prodButtonsAndFillbarsArray, buildingsArray;
-    [SerializeField] GameObject[] buildingsSubMenusArray, managerSubMenusArray; //For closing setactive when bought
+    public GameObject[] prodButtonsAndFillbarsArray, buildingsArray;
+    public GameObject[] buildingsSubMenusArray, managerSubMenusArray; //For closing setactive when bought
     #endregion
+
+
+
+
 
     private void Awake()
     {
         UIM = this;
-        isMenuOpen = false;
     }
 
     private void Start()
     {
         SOM.objectsList[0].isBuildingBought = SOM.objectsList[4].isBuildingBought = true; //Wood and Iron Ore is always open, no need to purchase them
+
+        #region Setting up some things
+        for (int i = 0; i < 8; i++)
+        {
+            SpdUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].SpdUpgCost;
+            IncUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].IncUpgCost;  //Speed and income upgrade buttons cost text
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            if (SOM.objectsList[i].isBuildingBought == false) //If building not bought, then you can't hire the building's manager.
+                managerSubMenusArray[i].SetActive(false);
+        }
+        #endregion
     }
 
     private void Update()
     {
-        #region deneme
-        /*
-        #region Stocks text display
-        for (int i = 0; i < 8; i++)
-            SOM.StockTextsArray[i].text = SOM.objectsList[i].stock.ToString();
-        #endregion        
-
-        #region Menu Button Texts
-        for (int i = 0; i < SellIncomeTextsArray.Length; i++) //Sell button income texts
-            SellIncomeTextsArray[i].text = "Sell For $" + SOM.objectsList[i].stock * SOM.objectsList[i].MaterialCost;
-
-        for (int i = 0; i < 8; i++) //Speed & income upgrade button cost text
-        {
-            SpdUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].SpdUpgCost;
-            IncUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].IncUpgCost;
-        }
-        #endregion
-
-        #region Manager Menu Materials, when bought these are turning off
-        for (int i = 0; i < 8; i++)
-            managerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought);
-        #endregion
-
-        #region If building not bought, then you can't hire the building's manager.
-        for (int i = 0; i < 8; i++)
-        {
-            if (SOM.objectsList[i].isBuildingBought == false)
-            {
-                buildingsSubMenusArray[i].SetActive(false);
-            }
-        }
-        #endregion
-        */
-        #endregion
-
-        #region Buildings and fillbars & Produce buttons. When building bought, these are turning on
-        for (int i = 0; i < buildingsArray.Length; i++)
-        {
-            buildingsSubMenusArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
-            buildingsArray[i].SetActive(SOM.objectsList[i].isBuildingBought);
-        }
-        #endregion
-
-        #region Buildings Menu Materials, when bought, set setactive false
-        for (int i = 0; i < 8; i++)
-        {
-            if ((i==0) && (i==4))  //0 and 4 is wood and iron ore
-            { continue; }
-            buildingsSubMenusArray[i].SetActive(!SOM.objectsList[i].isBuildingBought);
-        }
-        #endregion
+        moneyText.text = "$" + gm.money.ToString();
 
         for (int i = 0; i < 8; i++)
         {
             SOM.StockTextsArray[i].text = SOM.objectsList[i].stock.ToString(); //Stock text display
 
             SellIncomeTextsArray[i].text = "Sell For $" + SOM.objectsList[i].stock * SOM.objectsList[i].MaterialCost; //sell buttons income text
-
-            SpdUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].SpdUpgCost;
-            IncUpgCostTextsArray[i].text = "Upgrade For $" + SOM.objectsList[i].IncUpgCost;  //Speed and income upgrade buttons cost text
-
-            managerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought); //manager menu materials
-
-            if (SOM.objectsList[i].isBuildingBought == false) //If building not bought, then you can't hire the building's manager.
-                buildingsSubMenusArray[i].SetActive(false);
         }
-
-        moneyText.text = "$" + gm.money.ToString();
-
-        menu.SetActive(isMenuOpen);
     }
 
-    public void MenuOnOffButton() { isMenuOpen = !isMenuOpen; }
+    public void MenuOnOffButton()
+    {
+        switch (menu.activeInHierarchy)
+        {
+            case true:
+                menu.SetActive(false);
+                break;
+            case false:
+                menu.SetActive(true);
+                break;
+        }
+    }
 
     public void MenusNav(int index) //Sub menu buttons
     {
@@ -138,4 +104,6 @@ public class UIManager : MonoBehaviour
         }
         MenusArray[index].SetActive(true);
     }
+
+    
 }

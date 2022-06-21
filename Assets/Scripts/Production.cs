@@ -20,9 +20,9 @@ public class Production : MonoBehaviour
     private void Update()
     {
         #region Production
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 8; i++) //This isn't working in a function, so I have to write like this.
         {
-            if (SOM.objectsList[i].isManagerBought) // I should make this different but IDK. It's future Eren's problem. If manager is bought, automates the production.
+            if (SOM.objectsList[i].isManagerBought) // If manager is bought, automates the production.
             {
                 SOM.objectsList[i].isProduction = true;
                 SOM.ProduceButtonsArray[i].SetActive(false);

@@ -97,43 +97,60 @@ public class SO_MaterialUI : ScriptableObject
     [FoldoutGroup("Upgrade")]
     public float MaterialCost, SpdUpgCost, IncUpgCost, BuildingCost, ManagerCost, SpdUpgLvl, IncUpgLvl, SpdUpgMultiplier, IncUpgMultiplier, SpdUpgCostMultiplier, IncUpgCostMultiplier;
 
-    [SerializeField, FoldoutGroup("FullReset")] float defaultTime, defaultStock, defaultMaterialCost, defaultSpdUpgCost, defaultIncUpgCost, defaultIncUpgLvl, defaultSpdUpgLvl;
+    [SerializeField, FoldoutGroup("FullReset")] 
+    float defaultTime, defaultStock, defaultMaterialCost, defaultSpdUpgCost, defaultIncUpgCost, defaultIncUpgLvl, defaultSpdUpgLvl;
     
 
     public void SellMaterial()
     {
+        Debug.Log("sell material " + this.name);
         Money += (stock * MaterialCost); //I couldn't find it with name IDK why, Scriptable object doesn't hold when you drag and drop things, and at last I did this.
         stock = 0;
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
-
+    ////////////////////////////////////////////////////////////////////////////////////////
     public void SpeedUpgrade()
     {
+        Debug.Log("spd upg " + this.name);
         if (Money >= SpdUpgCost)
         {
             Money -= SpdUpgCost;
-            SpdUpgLvl += 1;
-            SpdUpgCost *= SpdUpgCostMultiplier;
-            SpdUpgCostText.text = "Upgrade For $" + SpdUpgCost;
-            if (SpdUpgLvl % 10 == 0)
-                time /= (SpdUpgMultiplier*2); //Twice as fast at multiples of 10
-            else
-                time /= SpdUpgMultiplier;
+            SpeedUpgrade1();
         }
     }
+    public void SpeedUpgrade1()
+    {
+        SpdUpgLvl += 1;
+        SpdUpgCost *= SpdUpgCostMultiplier;
+        SpdUpgCostText.text = "Upgrade For $" + SpdUpgCost;
+        if (SpdUpgLvl % 10 == 0)
+            time /= (SpdUpgMultiplier * 2); //Twice as fast at multiples of 10
+        else
+            time /= SpdUpgMultiplier;
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////
+
     public void IncomeUpgrade()
     {
+        Debug.Log("incme upg " + this.name);
         if (Money >= IncUpgCost)
         {
             Money -= IncUpgCost;
-            IncUpgLvl += 1;
-            IncUpgCost *= IncUpgCostMultiplier;
-            MaterialCost *= IncUpgMultiplier;
-            IncUpgCostText.text = "Upgrade For $" + IncUpgCost;
+            IncomeUpgrade1();
         }
     }
+    public void IncomeUpgrade1()
+    {
+        IncUpgLvl += 1;
+        IncUpgCost *= IncUpgCostMultiplier;
+        MaterialCost *= IncUpgMultiplier;
+        IncUpgCostText.text = "Upgrade For $" + IncUpgCost;
+    }
 
+    ////////////////////////////////////////////////////////////////////////////////////////
     public void BuyManager()
     {
+        Debug.Log("buy manager " + this.name);
         if (Money >= ManagerCost)
         {
             Money -= ManagerCost;
@@ -144,6 +161,7 @@ public class SO_MaterialUI : ScriptableObject
     }
     public void BuyBuilding()
     {
+        Debug.Log("buy building " + this.name);
         if (Money >= BuildingCost)
         {
             Money -= BuildingCost;
@@ -154,6 +172,25 @@ public class SO_MaterialUI : ScriptableObject
 
             ManagerSubMenu.SetActive(true);
         }
+        var sayac = 0;
+        var randomUpg = GameObject.FindGameObjectWithTag("RandomUpgrade").GetComponent<RandomUpgrade>();
+        var som = GameObject.FindGameObjectWithTag("SOManager").GetComponent<SO_Manager>();
+        for (int i = 0; i < som.objectsList.Count; i++)
+        {
+            if (som.objectsList[i].isBuildingBought == false)
+            {
+                sayac = 0;
+                break;
+            }
+            else
+            {
+                sayac++;
+            }
+            if (sayac == 8)
+            {
+                randomUpg.isAllBuildingsBought = true;
+            }
+        }
     }
 
 
@@ -162,6 +199,7 @@ public class SO_MaterialUI : ScriptableObject
 
     public void FullReset() //For testing, resets the values.
     {
+        Debug.Log("fullreset " + this.name);
         timer = 0;
         time = defaultTime;
         stock = defaultStock;
@@ -172,6 +210,7 @@ public class SO_MaterialUI : ScriptableObject
         IncUpgLvl = defaultIncUpgLvl;
         isManagerBought = false;
         isProduction = false;
+
         if (order != 0 && order != 4)
         {
             isBuildingBought = false;

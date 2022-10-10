@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: IronIngot
   m_EditorClassIdentifier: 
   stock: 0
-  order: 6
+  order: 5
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 0
-  timer: 0.6515498
-  time: 8.1
-  MaterialCost: 7
+  timer: 0
+  time: 5
+  MaterialCost: 0
   SpdUpgCost: 90
-  IncUpgCost: 140
+  IncUpgCost: 180
   BuildingCost: 750
   ManagerCost: 1100
   SpdUpgLvl: 0

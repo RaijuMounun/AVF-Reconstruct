@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Table
   m_EditorClassIdentifier: 
   stock: 0
-  order: 3
+  order: 2
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 0
-  timer: 0.0756391
-  time: 0.18076389
-  MaterialCost: 15
+  timer: 0
+  time: 6.25
+  MaterialCost: 0
   SpdUpgCost: 120
-  IncUpgCost: 160
+  IncUpgCost: 240
   BuildingCost: 1500
   ManagerCost: 2200
   SpdUpgLvl: 0

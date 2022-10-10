@@ -12,12 +12,6 @@ public class _Camera : MonoBehaviour
 
     private void Update()
     {
-        #region UI Display Switch        
-        UIM.woodsButtonFillbarParent.SetActive(cameraInWood);
-        UIM.ironsButtonFillbarParent.SetActive(!cameraInWood);
-        #endregion
-
-
         #region Camera Position
 
         switch (cameraInWood)
@@ -40,5 +34,11 @@ public class _Camera : MonoBehaviour
     }
 
 
-    public void CameraSwitch() { cameraInWood = !cameraInWood; }
+    public void CameraSwitch() 
+    { 
+        cameraInWood = !cameraInWood;
+        UIM.woodsButtonFillbarParent.SetActive(cameraInWood);
+        UIM.ironsButtonFillbarParent.SetActive(!cameraInWood);
+
+    }
 }

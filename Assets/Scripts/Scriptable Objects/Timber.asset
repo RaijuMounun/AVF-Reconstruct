@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Timber
   m_EditorClassIdentifier: 
   stock: 0
-  order: 2
+  order: 1
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 0
-  timer: 0.0346296
-  time: 0.06558328
-  MaterialCost: 5
+  timer: 0
+  time: 2.5
+  MaterialCost: 0
   SpdUpgCost: 70
-  IncUpgCost: 120
+  IncUpgCost: 140
   BuildingCost: 500
   ManagerCost: 800
   SpdUpgLvl: 0

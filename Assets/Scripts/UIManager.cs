@@ -44,9 +44,6 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
-
-
-
     private void Awake()
     {
         UIM = this;
@@ -68,12 +65,13 @@ public class UIManager : MonoBehaviour
             if (SOM.objectsList[i].isBuildingBought == false) //If building not bought, then you can't hire the building's manager.
                 managerSubMenusArray[i].SetActive(false);
         }
+
+        moneyText.text = "$" + gm.money.ToString();
         #endregion
     }
 
     private void Update()
     {
-        moneyText.text = "$" + gm.money.ToString();
 
         for (int i = 0; i < 8; i++)
         {

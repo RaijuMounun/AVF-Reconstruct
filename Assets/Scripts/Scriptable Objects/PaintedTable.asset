@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: PaintedTable
   m_EditorClassIdentifier: 
   stock: 0
-  order: 4
+  order: 3
   isProduction: 0
   isManagerBought: 0
-  isBuildingBought: 0
-  timer: 0.4689098
-  time: 1.046284
-  MaterialCost: 25
+  isBuildingBought: 1
+  timer: 0
+  time: 15.625
+  MaterialCost: 0
   SpdUpgCost: 200
-  IncUpgCost: 200
+  IncUpgCost: 400
   BuildingCost: 5000
   ManagerCost: 6500
   SpdUpgLvl: 0

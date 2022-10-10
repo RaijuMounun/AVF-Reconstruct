@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: IronOre
   m_EditorClassIdentifier: 
   stock: 0
-  order: 5
+  order: 4
   isProduction: 0
   isManagerBought: 0
-  isBuildingBought: 1
-  timer: 0.732092
-  time: 1.2528849
-  MaterialCost: 2.5
+  isBuildingBought: 0
+  timer: 0
+  time: 2
+  MaterialCost: 0
   SpdUpgCost: 40
-  IncUpgCost: 100
+  IncUpgCost: 80
   BuildingCost: 0
   ManagerCost: 400
   SpdUpgLvl: 0

@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Gear
   m_EditorClassIdentifier: 
   stock: 0
-  order: 8
+  order: 7
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 0
-  timer: 0.30108458
-  time: 28.125
-  MaterialCost: 30
+  timer: 0
+  time: 31.25
+  MaterialCost: 0
   SpdUpgCost: 180
-  IncUpgCost: 220
+  IncUpgCost: 360
   BuildingCost: 8500
   ManagerCost: 9500
   SpdUpgLvl: 0

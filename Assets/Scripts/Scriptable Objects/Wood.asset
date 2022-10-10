@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   stock: 0
-  order: 1
+  order: 0
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 1

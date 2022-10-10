@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Nail
   m_EditorClassIdentifier: 
   stock: 0
-  order: 7
+  order: 6
   isProduction: 0
   isManagerBought: 0
   isBuildingBought: 0
-  timer: 4.4681525
-  time: 11.25
-  MaterialCost: 18
+  timer: 0
+  time: 12.5
+  MaterialCost: 0
   SpdUpgCost: 130
-  IncUpgCost: 180
+  IncUpgCost: 260
   BuildingCost: 2500
   ManagerCost: 3200
   SpdUpgLvl: 0

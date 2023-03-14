@@ -7,8 +7,7 @@ public class RandomUpgrade : MonoBehaviour
     //arada bir bildirim simgesi görünecek
     [SerializeField] GameObject window, star, bonus1, bonus2, bonus3, bonusesParent;
     [SerializeField] float randomTime, timer;
-    [SerializeField] bool bonusClaimed;
-    public bool isAllBuildingsBought;
+    public bool isAllBuildingsBought, bonusClaimed;
 
     List<GameObject> bonusesList = new List<GameObject>();
 
@@ -39,6 +38,11 @@ public class RandomUpgrade : MonoBehaviour
         bonusesList.Add(bonus1);
         bonusesList.Add(bonus2);
         bonusesList.Add(bonus3);
+
+        if (isAllBuildingsBought == true)
+        {
+            bonusClaimed = true;
+        }
     }
 
     private void Update()
@@ -46,7 +50,7 @@ public class RandomUpgrade : MonoBehaviour
         if (bonusClaimed == true && isAllBuildingsBought == true)
         {
             timer += Time.deltaTime;
-
+            star.SetActive(false);
         }
         if (timer >= randomTime)
         {
@@ -115,8 +119,6 @@ public class RandomUpgrade : MonoBehaviour
             case bonusesEnum.gearIncome:
                 som.objectsList[7].IncomeUpgrade1();
                 break;
-            default:
-                break;
         }
         OpenWindow();
         for (int i = 0; i < 16; i++)
@@ -131,6 +133,7 @@ public class RandomUpgrade : MonoBehaviour
     public void OpenWindow()
     {
         window.SetActive(!window.activeInHierarchy);
+        star.SetActive(false);
 
         //bonusesparent'ýn rastgele bir childýný seçip onun transformunu bonuses1'e eþitleyip setactiveini açacak
         for (int i = 0; i < 3; i++)

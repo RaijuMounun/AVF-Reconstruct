@@ -103,20 +103,19 @@ public class SO_MaterialUI : ScriptableObject
 
     public void SellMaterial()
     {
-        Debug.Log("sell material " + this.name);
-        Money += (stock * MaterialCost); //I couldn't find it with name IDK why, Scriptable object doesn't hold when you drag and drop things, and at last I did this.
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().money += (stock * MaterialCost); //I couldn't find it with name IDK why, Scriptable object doesn't hold when you drag and drop things, and at last I did this.
         stock = 0;
         GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
     ////////////////////////////////////////////////////////////////////////////////////////
     public void SpeedUpgrade()
     {
-        Debug.Log("spd upg " + this.name);
         if (Money >= SpdUpgCost)
         {
             Money -= SpdUpgCost;
             SpeedUpgrade1();
         }
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
     public void SpeedUpgrade1()
     {
@@ -127,17 +126,19 @@ public class SO_MaterialUI : ScriptableObject
             time /= (SpdUpgMultiplier * 2); //Twice as fast at multiples of 10
         else
             time /= SpdUpgMultiplier;
+
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
     ////////////////////////////////////////////////////////////////////////////////////////
 
     public void IncomeUpgrade()
     {
-        Debug.Log("incme upg " + this.name);
         if (Money >= IncUpgCost)
         {
             Money -= IncUpgCost;
             IncomeUpgrade1();
         }
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
     public void IncomeUpgrade1()
     {
@@ -145,23 +146,24 @@ public class SO_MaterialUI : ScriptableObject
         IncUpgCost *= IncUpgCostMultiplier;
         MaterialCost *= IncUpgMultiplier;
         IncUpgCostText.text = "Upgrade For $" + IncUpgCost;
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////
     public void BuyManager()
     {
-        Debug.Log("buy manager " + this.name);
         if (Money >= ManagerCost)
         {
             Money -= ManagerCost;
             isManagerBought = true;
 
             ManagerSubMenu.SetActive(false);
+            GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().managerSubMenusArray[order].SetActive(false);
         }
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
     public void BuyBuilding()
     {
-        Debug.Log("buy building " + this.name);
         if (Money >= BuildingCost)
         {
             Money -= BuildingCost;
@@ -171,6 +173,8 @@ public class SO_MaterialUI : ScriptableObject
             BuildingSubMenu.SetActive(false);
 
             ManagerSubMenu.SetActive(true);
+
+            GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().prodButtonsAndFillbarsArray[order].SetActive(true);
         }
         var sayac = 0;
         var randomUpg = GameObject.FindGameObjectWithTag("RandomUpgrade").GetComponent<RandomUpgrade>();
@@ -189,8 +193,10 @@ public class SO_MaterialUI : ScriptableObject
             if (sayac == 8)
             {
                 randomUpg.isAllBuildingsBought = true;
+                randomUpg.bonusClaimed = true;
             }
         }
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
 
 
@@ -199,7 +205,6 @@ public class SO_MaterialUI : ScriptableObject
 
     public void FullReset() //For testing, resets the values.
     {
-        Debug.Log("fullreset " + this.name);
         timer = 0;
         time = defaultTime;
         stock = defaultStock;
@@ -215,5 +220,6 @@ public class SO_MaterialUI : ScriptableObject
         {
             isBuildingBought = false;
         }
+        GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>().moneyText.text = "$" + Money.ToString();
     }
 }

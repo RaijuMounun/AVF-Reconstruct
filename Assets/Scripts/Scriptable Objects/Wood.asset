@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c44bb66b2850984b9f8d15f6b7e93c0, type: 3}
   m_Name: Wood
   m_EditorClassIdentifier: 
-  stock: 0
+  stock: 300
   order: 0
-  isProduction: 0
-  isManagerBought: 0
+  isProduction: 1
+  isManagerBought: 1
   isBuildingBought: 1
-  timer: 0
-  time: 1
+  timer: 0.92419434
+  time: 0.952381
   MaterialCost: 2
-  SpdUpgCost: 30
+  SpdUpgCost: 34.5
   IncUpgCost: 60
   BuildingCost: 0
   ManagerCost: 300
-  SpdUpgLvl: 0
+  SpdUpgLvl: 1
   IncUpgLvl: 0
   SpdUpgMultiplier: 1.05
   IncUpgMultiplier: 1.2

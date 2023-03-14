@@ -16,7 +16,7 @@ MonoBehaviour:
   order: 3
   isProduction: 0
   isManagerBought: 0
-  isBuildingBought: 1
+  isBuildingBought: 0
   timer: 0
   time: 15.625
   MaterialCost: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   IncUpgCostMultiplier: 1.3
   defaultTime: 15.625
   defaultStock: 0
-  defaultMaterialCost: 0
+  defaultMaterialCost: 3.9
   defaultSpdUpgCost: 200
   defaultIncUpgCost: 400
   defaultIncUpgLvl: 0

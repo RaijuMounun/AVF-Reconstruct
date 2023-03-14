@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour //I thought I needed this more but...
         {
             for (int i = 0; i < 8; i++)
             {
-                print("fullreset döngüsü");
                 SOM.objectsList[i].FullReset();
             }
             fullReset = false;

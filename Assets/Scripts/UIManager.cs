@@ -67,6 +67,25 @@ public class UIManager : MonoBehaviour
         }
 
         moneyText.text = "$" + gm.money.ToString();
+
+
+        for (int i = 0; i < 8; i++)
+        {
+            if (SOM.objectsList[i].isBuildingBought == true)
+            {
+                buildingsSubMenusArray[i].SetActive(false);
+                SOM.objectsList[i].Building.SetActive(true);
+                prodButtonsAndFillbarsArray[i].SetActive(true);
+                if (SOM.objectsList[i].isManagerBought == false)
+                {
+                    managerSubMenusArray[i].SetActive(true);
+                }
+                else
+                {
+                    managerSubMenusArray[i].SetActive(false);
+                }
+            }
+        }
         #endregion
     }
 

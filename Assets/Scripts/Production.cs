@@ -12,15 +12,12 @@ public class Production : MonoBehaviour
     [FoldoutGroup("Scripts")] public SO_Manager SOM;
     #endregion
 
-    private void Awake()
-    {
-        prd = this;
-    }
+    private void Awake() => prd = this;
 
     private void Update()
     {
         #region Production
-        for (int i = 0; i < 8; i++) //This isn't working in a function, so I have to write like this.
+        for (int i = 0; i < 8; i++)
         {
             if (SOM.objectsList[i].isManagerBought) // If manager is bought, automates the production.
             {
@@ -49,8 +46,5 @@ public class Production : MonoBehaviour
         #endregion
     }
 
-    public void ProductionButtons(int index)
-    {
-        SOM.objectsList[index].isProduction = true;
-    }
+    public void ProductionButtons(int index) => SOM.objectsList[index].isProduction = true;
 }

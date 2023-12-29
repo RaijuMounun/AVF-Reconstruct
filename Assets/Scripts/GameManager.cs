@@ -23,6 +23,5 @@ public class GameManager : MonoBehaviour
         {
             SOM.objectsList[i].FullReset();
         }
-        fullReset = false;
     }
 }

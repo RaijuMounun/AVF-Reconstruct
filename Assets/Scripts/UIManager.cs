@@ -44,10 +44,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
 
-    private void Awake()
-    {
-        UIM = this;
-    }
+    private void Awake() => UIM = this;
 
     private void Start()
     {
@@ -76,14 +73,7 @@ public class UIManager : MonoBehaviour
                 buildingsSubMenusArray[i].SetActive(false);
                 SOM.objectsList[i].Building.SetActive(true);
                 prodButtonsAndFillbarsArray[i].SetActive(true);
-                if (SOM.objectsList[i].isManagerBought == false)
-                {
-                    managerSubMenusArray[i].SetActive(true);
-                }
-                else
-                {
-                    managerSubMenusArray[i].SetActive(false);
-                }
+                managerSubMenusArray[i].SetActive(!SOM.objectsList[i].isManagerBought);
             }
         }
         #endregion
@@ -100,18 +90,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void MenuOnOffButton()
-    {
-        switch (menu.activeInHierarchy)
-        {
-            case true:
-                menu.SetActive(false);
-                break;
-            case false:
-                menu.SetActive(true);
-                break;
-        }
-    }
+    public void MenuOnOffButton() => menu.SetActive(!menu.activeInHierarchy);
 
     public void MenusNav(int index) //Sub menu buttons
     {
